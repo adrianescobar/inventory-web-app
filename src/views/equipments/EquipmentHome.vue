@@ -36,20 +36,32 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import DeleteConfirmation from '../../components/DeleteConfirmation.vue';
 import axios from 'axios';
 import { API_BASE_URL } from '../../env.js';
 import moment from 'moment';
 
+interface EquipmentType {
+    id: number;
+    description: string;
+}
+
+interface Equipment {
+    id: number;
+    brand: string;
+    model: string;
+    equipmentType: EquipmentType;
+    purchaseDate: string;
+    serialNumber: string;
+}
+
 const router = useRouter();
 
-const equipmentList = ref([]);
-
-const selectedId = ref([null]);
-
-const deleteModal = ref(null);
+const equipmentList = ref<Equipment[]>([]);
+const selectedId = ref<number | null>(null);
+const deleteModal = ref<any>(null);
 
 async function fetchEquipment() {
     try {
@@ -61,7 +73,7 @@ async function fetchEquipment() {
     }
 }
 
-async function openDeleteModal(id) {
+async function openDeleteModal(id: number) {
     selectedId.value = id;
     if (!deleteModal.value) {
         const { Modal } = await import('bootstrap');
@@ -93,7 +105,7 @@ async function goToEquipmentAddForm() {
     router.push('/equipments/add');
 }
 
-async function goToEquipmentEditForm(id) {
+async function goToEquipmentEditForm(id: number) {
     router.push(`/equipments/${id}`);
 }
 

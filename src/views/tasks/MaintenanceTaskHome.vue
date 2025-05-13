@@ -33,7 +33,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
@@ -54,7 +54,7 @@ async function fetchMaintenanceTasks() {
     }
 }
 
-async function openDeleteModal(id) {
+async function openDeleteModal(id: number) {
     selectedId.value = id;
     if (!deleteModal.value) {
         const { Modal } = await import('bootstrap');
@@ -79,7 +79,7 @@ async function goToAddMaintenanceTask() {
     router.push('/tasks/add');
 }
 
-async function goToEditMaintenanceTask(id) {
+async function goToEditMaintenanceTask(id: number) {
     router.push(`/tasks/${id}`);
 }
 
