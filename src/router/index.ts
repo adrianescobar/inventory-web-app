@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
 import Equipment from '../views/equipments/EquipmentHome.vue';
 import AddEquipment from '../views/equipments/AddEquipment.vue';
 import EditEquipment from '../views/equipments/EditEquipment.vue';
@@ -8,7 +7,7 @@ import AddMaintenanceTask from '../views/tasks/AddMaintenanceTask.vue';
 import EditMaintenanceTask from '../views/tasks/EditMaintenanceTask.vue';
 
 const routes = [
-  { path: '/', component: Home },
+  { path: '/', component: Equipment },
   { path: '/equipments', component: Equipment },
   { path: '/equipments/add', component: AddEquipment },
   { path: '/equipments/:id', component: EditEquipment },
